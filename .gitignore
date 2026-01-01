@@ -1,0 +1,13 @@
+node_modules/
+dist/
+release/
+.DS_Store
+**/.DS_Store
+*.log
+.env
+.env.local
+
+# Electron
+*.dmg
+*.exe
+*.AppImage
