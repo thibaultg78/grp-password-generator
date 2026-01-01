@@ -27,6 +27,7 @@
     "vite": "^5.0.0"
   },
   "build": {
+    "publish": null,
     "appId": "fr.thibaultgibard.grp",
     "productName": "GRP Password Generator",
     "directories": {
