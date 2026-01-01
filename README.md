@@ -53,6 +53,4 @@ password-generator/
 
 ## Screenshots on Windows 11
 
-![alt text](image.png)
-
-![alt text](image-1.png)
+<img height="600" alt="win-screenshot-1" src="https://github.com/user-attachments/assets/c8a45fc7-00db-41f4-886b-e7bda13e8d56" />
