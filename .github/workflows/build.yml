@@ -1,7 +1,12 @@
-name: Build Electron Apps
+name: Build & Release
 
 on:
-  workflow_dispatch:  # Déclenchement manuel uniquement
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (ex: 2.0.1)'
+        required: true
+        default: '2.0.0'
 
 jobs:
   build-macos:
@@ -24,7 +29,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: macos-build
-          path: release/*.dmg
+          path: |
+            release/*.dmg
 
   build-windows:
     runs-on: windows-latest
@@ -46,4 +52,50 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: release/*.exe
+          path: |
+            release/*.exe
+
+  create-release:
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download macOS build
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-build
+          path: dist
+          
+      - name: Download Windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-build
+          path: dist
+          
+      - name: List files
+        run: ls -la dist/
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: GRP Password Generator v${{ github.event.inputs.version }}
+          body: |
+            ## 🔐 GRP Password Generator v${{ github.event.inputs.version }}
+            
+            ### Téléchargements
+            - **Windows** : `GRP.Password.Generator-${{ github.event.inputs.version }}.Setup.exe`
+            - **macOS Intel** : `GRP.Password.Generator-${{ github.event.inputs.version }}.dmg`
+            - **macOS Apple Silicon** : `GRP.Password.Generator-${{ github.event.inputs.version }}-arm64.dmg`
+            
+            ### Nouveautés
+            - Génération sécurisée de mots de passe
+            - Interface multilingue (FR/EN)
+            - Mode sombre
+            - Score de sécurité
+          draft: false
+          prerelease: false
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
