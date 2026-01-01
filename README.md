@@ -1,12 +1,12 @@
 # GRP - Générateur de mots de passe v2.0
 
-Cette application a pour vocation de tester un développement qui serait compatible multi-plateforme et notamment macOS et Windows avec 1 seul et unique développement.
+Cette application a pour vocation de **tester un développement qui serait compatible multi-plateforme et notamment macOS et Windows** avec 1 seul et unique développement.
 
-Pour l'occasion, j'ai voulu utiliser une idée de petite application que j'avais développé en 2011 en .NET et en Java à l'époque.
+Pour l'occasion, j'ai voulu utiliser une idée de petite application que j'avais développé en 2011 en .NET et en Java à l'époque : **un générateur de mots de passe**.
 
 Version moderne du générateur de mots de passe, développé en React avec Vite.
 
-L'objectif sera de packager cette application en mode Electron afin d'avoir une compatibilité avec macOS + Windows (et tout d'une manière générale). Principe de fonctionnement de grands outils comme VS Code, Notion, Discord, etc.
+L'objectif sera de packager cette application en mode **Electron** afin d'avoir une **compatibilité avec macOS + Windows** (et tout d'une manière générale). Principe de fonctionnement de grands outils comme VS Code, Notion, Discord, etc.
 
 ## Prérequis
 
@@ -50,3 +50,9 @@ password-generator/
 - [x] Indicateur de force du mot de passe (fonctionnalité inspirée du générateur de Proton)
 - [x] Traduction EN/FR en Vibe Coding
 - [x] Reprise du mode jour / sombre
+
+## Screenshots on Windows 11
+
+![alt text](image.png)
+
+![alt text](image-1.png)
