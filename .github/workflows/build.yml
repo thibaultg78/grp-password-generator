@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version (ex: 2.0.1)'
+        description: 'Version (ex: 2.1.0)'
         required: true
         default: '2.0.0'
+      changelog:
+        description: 'Nouveautés (liste avec tirets)'
+        required: true
+        default: '- Corrections de bugs'
 
 jobs:
   build-macos:
@@ -90,10 +94,7 @@ jobs:
             - **macOS Apple Silicon** : `GRP.Password.Generator-${{ github.event.inputs.version }}-arm64.dmg`
             
             ### Nouveautés
-            - Génération sécurisée de mots de passe
-            - Interface multilingue (FR/EN)
-            - Mode sombre
-            - Score de sécurité
+            ${{ github.event.inputs.changelog }}
           draft: false
           prerelease: false
           files: dist/*
