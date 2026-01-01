@@ -12,6 +12,7 @@ function createWindow() {
     minWidth: 550,
     maxWidth: 550,
     minHeight: 850,
+    autoHideMenuBar: true, // Hide menu bar
 
     webPreferences: {
       nodeIntegration: false,
@@ -22,8 +23,10 @@ function createWindow() {
     // Window style
     titleBarStyle: 'default',
     show: false, // Show after loading
-    backgroundColor: '#f3f4f6'
+    backgroundColor: '#f3f4f6'    
   })
+  
+  mainWindow.setMenu(null) // Remove menu bar
 
   // In development, load from Vite server
   // In production, load the built file
