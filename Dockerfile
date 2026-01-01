@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -8,8 +8,19 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Expose Vite port
-EXPOSE 5173
+# Copy source code
+COPY . .
 
-# Start dev server
-CMD ["npm", "run", "dev"]
+# Build the app
+RUN npm run build
+
+# Production image with nginx
+FROM nginx:alpine
+
+# Copy built files to nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
